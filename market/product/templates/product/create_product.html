@@ -2,11 +2,11 @@
 
 {% block content %}
 
-    <form method="post">
+    <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
 
         {{ form }}
-        <button action="submit">Upload Product</button>
+        <button type="submit">Upload</button>
     </form>
 
 {% endblock content %}
