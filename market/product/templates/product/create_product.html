@@ -1,0 +1,12 @@
+{% extends 'Account/base.html' %}
+
+{% block content %}
+
+    <form method="post">
+        {% csrf_token %}
+
+        {{ form }}
+        <button action="submit">Upload Product</button>
+    </form>
+
+{% endblock content %}
