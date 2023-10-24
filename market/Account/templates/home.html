@@ -1,6 +1,7 @@
-{% extends 'base.html' %}
+{% extends 'Account/base.html' %}
 {% block content %}
-
     <p>This is home</p>
+
+    <a href="{% url 'product:create_product' %}">Upload Product</a>
 
 {% endblock content %}
