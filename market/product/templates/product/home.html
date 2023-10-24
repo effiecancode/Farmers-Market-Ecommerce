@@ -1,0 +1,19 @@
+{% extends 'Account/base.html' %}
+
+
+{% block content %}
+    <div>
+        {% for product in products %}
+            <h2>{{ product.name }}</h2>
+            <div style="color: blue;" >
+                <img  width="100" height="100" src="{{ product.image.url }}" alt="">
+            </div>
+            <p>{{ product.price }}</p>
+            <p>{{ product.quantity }}</p>
+            <p>{{ product.description }}</p>
+        {% endfor %}
+    </div>
+    
+        
+{% endblock content %}
+    
