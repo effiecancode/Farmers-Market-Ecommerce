@@ -1,0 +1,37 @@
+{% extends 'Account/base.html' %}
+
+{% block content %}
+
+<div>
+        <h2>{{ product.name }}</h2>
+        <div style="color: blue;" >
+            <img  width="100" height="100" src="{{ product.image.url }}" alt="">
+        </div>
+        <p>{{ product.price }}</p>
+        <p>{{ product.quantity }}</p>
+        <p>{{ product.description }}</p>
+
+        {% if product.owner.username == request.user %}
+            <button type="submit">Update</button>
+            <button type="Delete">Delete</button>
+        {% endif %}
+
+</div>
+
+        <h3>Similar Products</h3>
+
+        {% for item in items %}
+        <div>
+            <a href="{% url 'product:product_details' item.id %}">
+                <h2>{{ item.name }}</h2>
+                <div style="color: blue;" >
+                    <img  width="100" height="100" src="{{ item.image.url }}" alt="">
+                </div>
+                <p>{{ item.price }}</p>
+                <!-- <p>{{ product.quantity }}</p> -->
+                <!-- <p>{{ product.description }}</p> -->
+            </a>
+        </div>
+        {% endfor %}
+
+{% endblock %}

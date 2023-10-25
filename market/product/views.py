@@ -18,7 +18,7 @@ def create_product(request):
         if form.is_valid():
             product = form.save(commit=False)
             product.owner = request.user
-            print(product)
+            # print(product)
             product.save()
 
             messages.success(request, f"{form.cleaned_data['name']} posted!")
@@ -28,5 +28,14 @@ def create_product(request):
             messages.error(request, 'Unsuccessful!')
 
     form = CreateProductForm()
-    
+
     return render(request, 'product/create_product.html', {"form": form})
+
+
+def product_details(request, id):
+    product = Product.objects.get(id=id)
+    # print(product)
+    items = Product.objects.filter(category=product.category)
+    return render(request, "product/product_details.html", {'product': product, 'items': items,})
+
+

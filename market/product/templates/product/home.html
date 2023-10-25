@@ -3,16 +3,19 @@
 
 {% block content %}
 <a href="{% url 'Account:signin' %}">Sign in</a>
-    <div>
+
         {% for product in products %}
-            <h2>{{ product.name }}</h2>
-            <div style="color: blue;" >
-                <img  width="100" height="100" src="{{ product.image.url }}" alt="">
-            </div>
-            <p>{{ product.price }}</p>
-            <p>{{ product.quantity }}</p>
-            <p>{{ product.description }}</p>
+        <div>
+            <a href="{% url 'product:product_details' product.id %}">
+                <h2>{{ product.name }}</h2>
+                <div style="color: blue;" >
+                    <img  width="100" height="100" src="{{ product.image.url }}" alt="">
+                </div>
+                <p>{{ product.price }}</p>
+                <!-- <p>{{ product.quantity }}</p> -->
+                <!-- <p>{{ product.description }}</p> -->
+            </a>
+        </div>
         {% endfor %}
-    </div>
 
 {% endblock content %}
