@@ -12,8 +12,8 @@
         <p>{{ product.description }}</p>
 
         {% if request.user.username == product.owner.username %}
-            <button type="submit">Update</button>
-            <button type="submit">Delete</button>
+            <a href="{% url 'product:update_product' product.id %}">Update</a>
+            <a href="{% url 'product:delete_product' product.id %}">Delete</a>
         {% endif %}
 
 </div>

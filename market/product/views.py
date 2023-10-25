@@ -1,8 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
-from .forms import CreateProductForm
+from .forms import CreateProductForm, UpdateProductForm
 from .models import Product
 
 
@@ -39,3 +39,30 @@ def product_details(request, id):
     return render(request, "product/product_details.html", {'product': product, 'items': items,})
 
 
+@login_required
+def update_product(request, id):
+
+    product = get_object_or_404(Product, id=id, owner=request.user)
+
+    if request.method == "POST":
+        form = UpdateProductForm(request.POST, request.FILES, instance=product)
+
+        if form.is_valid():
+            form.save()
+
+            return redirect("product:product_details", id=product.id)
+    else:
+        form = UpdateProductForm(instance=product)
+
+    context = {
+        "form": form
+    }
+
+    return render(request, "product/update_product.html", context)
+
+@login_required
+def delete_product(request, id):
+    product = get_object_or_404(Product, id=id, owner=request.user)
+    product.delete()
+
+    return redirect('product:home')
