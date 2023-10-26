@@ -1,0 +1,21 @@
+{% extends 'Account/base.html' %}
+
+
+{% block content %}
+
+    <h1>{{ request.user.username }}</h1>
+
+    <form action="" method="post">
+        {% csrf_token %}
+
+        {{ form }}
+
+        <button type="submit">Save</button>
+    </form>
+
+    {% if request.user.username %}
+            <a href="{% url 'product:update_product' product.id %}">Update</a>
+            <a href="{% url 'product:delete_product' product.id %}">Delete</a>
+    {% endif %}
+{% endblock content %}
+    
