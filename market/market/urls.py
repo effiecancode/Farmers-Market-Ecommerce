@@ -11,7 +11,10 @@ urlpatterns = [
     path('Account/', include('Account.urls')),
 
     # products
-    path("product/", include("product.urls"))
+    path("product/", include("product.urls")),
+
+    # dashboard urls
+    path("dashboard/", include("dashboard.urls"))
 ]
 
 if settings.DEBUG:
