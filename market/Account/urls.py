@@ -13,7 +13,7 @@ urlpatterns = [
 
     # profile
     path("profile/", views.profile, name="profile"), 
-    path("update_profile/", views.update_profile, name="update_profile"), 
-    path("delete_profile/", views.delete_profile, name="delete_profile"), 
+    path("update_profile/<int:id>/", views.update_profile, name="update_profile"), 
+    path("delete_profile/<int:id>/", views.delete_profile, name="delete_profile"), 
 
 ]

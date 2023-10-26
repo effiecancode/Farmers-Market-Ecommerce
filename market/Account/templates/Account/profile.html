@@ -5,7 +5,7 @@
 
     <h1>{{ request.user.username }}</h1>
 
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
 
         {{ form }}
@@ -14,8 +14,8 @@
     </form>
 
     {% if request.user.username %}
-            <a href="{% url 'product:update_product' product.id %}">Update</a>
-            <a href="{% url 'product:delete_product' product.id %}">Delete</a>
-    {% endif %}
+            <a href="{% url 'Account:update_profile' profile.id %}">Update</a>
+            <a href="{% url 'Account:delete_profile' profile.id %}">Delete</a>
+    {% endif %} 
 {% endblock content %}
     

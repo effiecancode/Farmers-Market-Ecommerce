@@ -26,6 +26,7 @@ def profile(request):
     if request.method == "POST":
         form = ProfileForm(request.POST, request.FILES)
 
+
         if form.is_valid():
             profile = form.save(commit=False)
             profile.user = request.user
@@ -62,11 +63,11 @@ def update_profile(request, id):
         "form": form
     }
 
-    return render(request, "product/update_product.html", context)
+    return render(request, "Account/update_profile.html", context)
 
 @login_required
 def delete_profile(request, id):
-    product = get_object_or_404(Profile, id=id, user=request.user)
-    product.delete()
+    profile = get_object_or_404(Profile, id=id, user=request.user)
+    profile.delete()
 
     return redirect('product:home')
