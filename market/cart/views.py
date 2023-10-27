@@ -1,11 +1,16 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from product.models import Product
 
 from .models import Cart
 
 @login_required
 def add_to_cart(request, product_id):
+    # get product instance with given id
+    Product = get_object_or_404(Product, id=product_id)
+
+    # check if product id in uders cart
     cart_item = Cart.objects.filter(user=request.user, product=product_id).first()
 
     if cart_item:
