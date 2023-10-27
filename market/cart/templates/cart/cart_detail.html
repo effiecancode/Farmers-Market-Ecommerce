@@ -1,0 +1,16 @@
+{% extends 'Account/base.html' %}
+
+{% block content %}
+
+<div class="div">
+
+    {% for item in cart_items %}
+    <h1>{{ item.product.name }}</h1>
+    <h2>{{ item.product.price }}</h2>
+    <h3>{{ item.quantity }}</h3>
+{% endfor %}
+    <h4>{{ total_price }}</h4>
+
+</div>
+
+{% endblock %}

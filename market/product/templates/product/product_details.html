@@ -11,6 +11,13 @@
         <p>{{ product.quantity }}</p>
         <p>{{ product.description }}</p>
 
+        {% if request.user.username != product.owner.username %}
+        <a href="{% url 'cart:addtocart' product.id %}">
+            <button>Add to Cart</button>
+        </a>
+        {% endif %}
+
+
         {% if request.user.username == product.owner.username %}
             <a href="{% url 'product:update_product' product.id %}">Update</a>
             <a href="{% url 'product:delete_product' product.id %}">Delete</a>
