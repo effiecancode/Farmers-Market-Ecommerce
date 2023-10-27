@@ -14,7 +14,7 @@ def add_to_cart(request, product_id):
     cart_item = Cart.objects.filter(user=request.user, product=product).first()
 
     if cart_item:
-        cart_item.quantity += 1
+        cart_item.units += 1
         cart_item.save()
         messages.success(request, "Item added to Cart")
 
@@ -37,7 +37,7 @@ def remove_from_cart(request, cart_item_id):
 @login_required
 def cart_detail(request):
     cart_items = Cart.objects.filter(user=request.user)
-    total_price = sum(item.quantity * item.product.price for item in cart_items)
+    total_price = sum(item.units * item.product.unit_price for item in cart_items)
 
     context = {
         'cart_items': cart_items,
@@ -45,3 +45,25 @@ def cart_detail(request):
     }
 
     return render(request, "cart/cart_detail.html", context)
+
+@login_required
+def increment_units(request, cart_item_id):
+    cart_item = get_object_or_404(Cart, id=cart_item_id)
+    
+    if cart_item.user == request.user:
+        cart_item.units += 1
+        cart_item.save()
+
+    return redirect('cart:cart_detail')
+
+@login_required
+def decrement_units(request, cart_item_id):
+    cart_item = get_object_or_404(Cart, id=cart_item_id)
+    
+    if cart_item.user == request.user:
+        if cart_item.units > 1:
+            cart_item.units -= 1
+            cart_item.save()
+
+    return redirect('cart:cart_detail')
+

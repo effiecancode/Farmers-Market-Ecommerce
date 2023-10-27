@@ -7,7 +7,19 @@
     {% for item in cart_items %}
     <h1>{{ item.product.name }}</h1>
     <h2>{{ item.product.price }}</h2>
-    <h3>{{ item.quantity }}</h3>
+    <h3>{{ item.units }}</h3>
+
+
+    <form method="post" action="{% url 'cart:increment_units' item.id %}">
+        {% csrf_token %}
+        <button type="submit">+</button>
+    </form>
+    
+    <form method="post" action="{% url 'cart:decrement_units' item.id %}">
+        {% csrf_token %}
+        <button type="submit">-</button>
+    </form>
+
 
     <a href="{% url 'cart:removefromcart' item.id %}">
         <button>Remove from Cart</button>
