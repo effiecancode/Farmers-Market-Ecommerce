@@ -8,10 +8,10 @@ from .models import Cart
 @login_required
 def add_to_cart(request, product_id):
     # get product instance with given id
-    Product = get_object_or_404(Product, id=product_id)
+    product = get_object_or_404(Product, id=product_id)
 
     # check if product id in uders cart
-    cart_item = Cart.objects.filter(user=request.user, product=product_id).first()
+    cart_item = Cart.objects.filter(user=request.user, product=product).first()
 
     if cart_item:
         cart_item.quantity += 1
@@ -19,7 +19,7 @@ def add_to_cart(request, product_id):
         messages.success(request, "Item added to Cart")
 
     else:
-        Cart.objects.create(user=request.user, product=product_id)
+        Cart.objects.create(user=request.user, product=product)
         messages.success(request, "Item added to Cart")
 
     return redirect('cart:cart_detail')

@@ -8,9 +8,13 @@
     <h1>{{ item.product.name }}</h1>
     <h2>{{ item.product.price }}</h2>
     <h3>{{ item.quantity }}</h3>
-{% endfor %}
-    <h4>{{ total_price }}</h4>
 
+    <a href="{% url 'cart:removefromcart' item.id %}">
+        <button>Remove from Cart</button>
+    </a>
+{% endfor %}
+
+    <h4>{{ total_price }}</h4>
 </div>
 
 {% endblock %}
