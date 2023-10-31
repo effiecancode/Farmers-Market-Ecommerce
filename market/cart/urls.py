@@ -11,4 +11,6 @@ urlpatterns = [
 
     path('increment_units/<int:cart_item_id>/', views.increment_units, name='increment_units'),
     path('decrement_units/<int:cart_item_id>/', views.decrement_units, name='decrement_units'),
+
+    path("mpesa_pay/", views.mpesa_pay, name='mpesa_pay'),
 ]

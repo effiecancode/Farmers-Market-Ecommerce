@@ -3,6 +3,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from product.models import Product
 
+from django.http import HttpResponse
+from django_daraja.mpesa.core import MpesaClient
+
 from .models import Cart
 
 @login_required
@@ -49,7 +52,7 @@ def cart_detail(request):
 @login_required
 def increment_units(request, cart_item_id):
     cart_item = get_object_or_404(Cart, id=cart_item_id)
-    
+
     if cart_item.user == request.user:
         cart_item.units += 1
         cart_item.save()
@@ -59,7 +62,7 @@ def increment_units(request, cart_item_id):
 @login_required
 def decrement_units(request, cart_item_id):
     cart_item = get_object_or_404(Cart, id=cart_item_id)
-    
+
     if cart_item.user == request.user:
         if cart_item.units > 1:
             cart_item.units -= 1
@@ -67,3 +70,21 @@ def decrement_units(request, cart_item_id):
 
     return redirect('cart:cart_detail')
 
+
+# mpesa view
+@login_required
+def mpesa_pay(request):
+    cl = MpesaClient()
+    # Use a Safaricom phone number that you have access to, for you to be able to view the prompt.
+    phone_number = '0114622333'
+    amount = 1
+    account_reference = 'reference'
+    transaction_desc = 'Description'
+    callback_url = 'https://api.darajambili.com/express-payment'
+    response = cl.stk_push(phone_number, amount, account_reference, transaction_desc, callback_url)
+    return HttpResponse(response)
+
+def stk_push_callback(request):
+    data = request.body
+
+    return HttpResponse('STK push in django')
