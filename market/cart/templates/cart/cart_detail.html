@@ -29,5 +29,13 @@
     <h4>{{ total_price }}</h4>
 </div>
 
+<div>
+    <form method="post" action="{% url 'cart:mpesa_pay' request.user.id %}">
+        {% csrf_token %}
+        <label for="phone_number">Enter Phone Number:</label>
+        <input type="text" name="phone_number" id="phone_number" required>
+        <button type="submit">Pay with M-Pesa</button>
+    </form>
+</div>
 
 {% endblock %}

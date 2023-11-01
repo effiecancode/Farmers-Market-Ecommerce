@@ -81,11 +81,12 @@ def mpesa_pay(request, id):
         cl = MpesaClient()
 
         current_user = Cart.objects.get(user_id=id)
-        amount = current_user.total_price
+        amount = int(current_user.total_price)
         account_reference = current_user.id 
+        description = f"{current_user.units} of {current_user.product.name} at {current_user.product.unit_price}. Amounting to: {current_user.total_price}."
         callback_url = 'https://api.darajambili.com/express-payment'
 
-        response = cl.stk_push(phone_number, amount, account_reference, callback_url)
+        response = cl.stk_push(phone_number, amount, account_reference, description, callback_url)
 
         return HttpResponse(response)
 
