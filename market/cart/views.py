@@ -87,6 +87,6 @@ def mpesa_pay(request, id):
 
         response = cl.stk_push(phone_number, amount, account_reference, callback_url)
 
-        # return HttpResponse(response)
+        return HttpResponse(response)
 
 
