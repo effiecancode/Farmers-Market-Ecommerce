@@ -73,18 +73,20 @@ def decrement_units(request, cart_item_id):
 
 # mpesa view
 @login_required
-def mpesa_pay(request):
-    cl = MpesaClient()
-    # Use a Safaricom phone number that you have access to, for you to be able to view the prompt.
-    phone_number = '0114622333'
-    amount = 1
-    account_reference = 'reference'
-    transaction_desc = 'Description'
-    callback_url = 'https://api.darajambili.com/express-payment'
-    response = cl.stk_push(phone_number, amount, account_reference, transaction_desc, callback_url)
-    return HttpResponse(response)
+def mpesa_pay(request, id):
+    if request.method == 'POST':
 
-def stk_push_callback(request):
-    data = request.body
+        phone_number = request.POST.get('phone_number')
 
-    return HttpResponse('STK push in django')
+        cl = MpesaClient()
+
+        current_user = Cart.objects.get(user_id=id)
+        amount = current_user.total_price
+        account_reference = current_user.id 
+        callback_url = 'https://api.darajambili.com/express-payment'
+
+        response = cl.stk_push(phone_number, amount, account_reference, callback_url)
+
+        # return HttpResponse(response)
+
+

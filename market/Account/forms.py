@@ -7,11 +7,11 @@ from .models import Profile
 
 class RegistrationForm(UserCreationForm):
 
-    phone = forms.IntegerField()
+    # phone = forms.IntegerField()
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'phone', 'password1', 'password2']
+        fields = ['username', 'email', 'password1', 'password2']
 
 class ProfileForm(forms.ModelForm):
     class Meta:
