@@ -2,43 +2,70 @@
 
 {% block content %}
 
-<div>
-        <h2>{{ product.name }}</h2>
-        <div style="color: blue;" >
-            <img  width="100" height="100" src="{{ product.image.url }}" alt="">
+
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="text-center">
+            <h2 class="text-capitalize" >{{ product.name }}</h2>
+                <img class="img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}" width="500" height="500"
+                style="border-radius: 20px;">
+            </div>
         </div>
-        <p>{{ product.price }}</p>
-        <p>{{ product.quantity }}</p>
-        <p>{{ product.description }}</p>
+        <div class="col-md-6 mt-5">
+            <h5 class="text-decoration-underline text-primary mb-4">Details:</h5>
+            <p> <strong class="fw-bold">Each at:</strong> ${{ product.price }}</p>
+            <p> <strong class="fw-bold">Minimum quantity:</strong> {{ product.quantity }}</p>
+            <p> <strong class="fw-bold">Minimum order:</strong> {{ product.unit_price }}</p>
+            <p> <strong class="fw-bold">Description:</strong> {{ product.description }}</p>
+            {% if request.user.username != product.owner.username %}
+                <a href="{% url 'cart:addtocart' product.id %}" class="btn btn-primary mt-3">Add to Cart</a>
+            {% endif %}
+            {% if request.user.username == product.owner.username %}
+                <a href="{% url 'product:update_product' product.id %}" class="btn btn-info">Update</a>
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Delete
+                  </button>
+                  
+            {% endif %}
+        </div>
 
-        {% if request.user.username != product.owner.username %}
-        <a href="{% url 'cart:addtocart' product.id %}">
-            <button>Add to Cart</button>
-        </a>
-        {% endif %}
 
-
-        {% if request.user.username == product.owner.username %}
-            <a href="{% url 'product:update_product' product.id %}">Update</a>
-            <a href="{% url 'product:delete_product' product.id %}">Delete</a>
-        {% endif %}
-
-</div>
-
-        <h3>Similar Products</h3>
-
-        {% for item in items %}
-        <div>
-            <a href="{% url 'product:product_details' item.id %}">
-                <h2>{{ item.name }}</h2>
-                <div style="color: blue;" >
-                    <img  width="100" height="100" src="{{ item.image.url }}" alt="">
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete this product</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <p>{{ item.price }}</p>
-                <!-- <p>{{ product.quantity }}</p> -->
-                <!-- <p>{{ product.description }}</p> -->
-            </a>
+                
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <a href="{% url 'product:delete_product' product.id %}" class="btn btn-danger" >Delete</a>
+                </div>
+            </div>
+            </div>
         </div>
-        {% endfor %}
 
+
+    </div>
+    <h3 class="mt-5 text-center display-8 fw-bold mb-3">Similar Products</h3>
+    <div class="row">
+        {% for item in items %}
+            <div class="col-md-2 mb-4">
+                <div class="card">
+                    <a  class="text-decoration-none" href="{% url 'product:product_details' item.id %}">
+                        <img class="card-img-top" src="{{ item.image.url }}" alt="{{ item.name }}">
+                        <div class="card-body">
+                            <h2 class="card-title fs-4 text-capitalize">{{ item.name }}</h2>
+                            <p class="card-text">Price: ${{ item.price }}</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}

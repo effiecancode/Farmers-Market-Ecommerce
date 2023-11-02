@@ -1,12 +1,23 @@
 {% extends 'Account/base.html' %}
 
+{% load crispy_forms_tags %}
+
 {% block content %}
-
-    <form action="" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-
-        {{ form }}
-        <button type="submit">Upload</button>
-    </form>
-
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow p-3 mb-5 bg-white rounded">
+                <div class="card-body">
+                    <h2 class="card-title text-center text-success">Create new product</h2>
+                    <hr>
+                    <form action="" method="POST" class="form-control" enctype="multipart/form-data" >
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <button class="btn btn-success mt-2 btn-block" type="submit">Upload</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock content %}

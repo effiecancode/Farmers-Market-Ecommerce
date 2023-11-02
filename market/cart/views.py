@@ -13,19 +13,17 @@ def add_to_cart(request, product_id):
     # get product instance with given id
     product = get_object_or_404(Product, id=product_id)
 
-    # check if product id in uders cart
-    cart_item = Cart.objects.filter(user=request.user, product=product).first()
-
-    if cart_item:
+    try:
+        cart_item = Cart.objects.get(user=request.user, product=product)
         cart_item.units += 1
         cart_item.save()
         messages.success(request, "Item added to Cart")
-
-    else:
+    except Cart.DoesNotExist:
         Cart.objects.create(user=request.user, product=product)
         messages.success(request, "Item added to Cart")
 
-    return redirect('cart:cart_detail')
+    return redirect('product:home')
+
 
 @login_required
 def remove_from_cart(request, cart_item_id):
@@ -75,19 +73,22 @@ def decrement_units(request, cart_item_id):
 @login_required
 def mpesa_pay(request, id):
     if request.method == 'POST':
-
         phone_number = request.POST.get('phone_number')
-
         cl = MpesaClient()
 
-        current_user = Cart.objects.get(user_id=id)
-        amount = int(current_user.total_price)
-        account_reference = current_user.id 
-        description = f"{current_user.units} of {current_user.product.name} at {current_user.product.unit_price}. Amounting to: {current_user.total_price}."
-        callback_url = 'https://api.darajambili.com/express-payment'
+        try:
+            cart_items = Cart.objects.filter(user_id=id)
+            total_price = 0
 
-        response = cl.stk_push(phone_number, amount, account_reference, description, callback_url)
+            for cart_item in cart_items:
+                total_price += cart_item.total_price
 
-        return HttpResponse(response)
+            account_reference = cart_items.first().id 
+            description = f"{len(cart_items)} items in the cart. Total price: {total_price}."
+            callback_url = 'https://api.darajambili.com/express-payment'
 
+            response = cl.stk_push(phone_number, int(total_price), account_reference, description, callback_url)
 
+            return HttpResponse(response)
+        except Cart.DoesNotExist:
+            return HttpResponse("Cart not found")

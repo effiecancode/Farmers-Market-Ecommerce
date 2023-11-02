@@ -1,14 +1,31 @@
 {% extends 'Account/base.html' %}
 
 {% block content %}
-    <h1>{{ request.user.username }}</h1>
+<div class="container">
+    <h1>Welcome, {{ request.user.username }}!</h1>
 
-    {% for product in products %}
-        <h1>{{ product.name }}</h1>
-        <img src="{{ product.image.url }}" height="200" width="200">
-        <h2>{{ product.price }}</h2>
-        <h3>{{ product.quantity }}</h3>
-        <p>{{ product.description }}</p>
-    {% endfor %}
+    <div class="row">
+        {% for product in products %}
+            <div class="col-md-4">
+                <a class="text-decoration-none" href="{% url 'product:product_details' product.id %}">
+                <div class="card mb-4">
+                    <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">{{ product.description }}</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Price: ${{ product.price }}</li>
+                        <li class="list-group-item">Quantity: {{ product.quantity }}</li>
+                    </ul>
+                </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
 
 {% endblock %}
+
+
