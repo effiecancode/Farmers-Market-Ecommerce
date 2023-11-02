@@ -125,6 +125,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = 'Account:signin'
 LOGIN_REDIRECT_URL = 'product:home'
 
+# ROOT_URL = "product:home"
+
 
 
 # The Mpesa environment to use
