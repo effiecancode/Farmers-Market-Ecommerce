@@ -19,6 +19,7 @@
             <p> <strong class="fw-bold">Minimum quantity:</strong> {{ product.quantity }}</p>
             <p> <strong class="fw-bold">Minimum order:</strong> {{ product.unit_price }}</p>
             <p> <strong class="fw-bold">Description:</strong> {{ product.description }}</p>
+            <p> <strong class="fw-bold">Location:</strong> {{ product.location }}</p>
             {% if request.user.username != product.owner.username %}
                 <a href="{% url 'cart:addtocart' product.id %}" class="btn btn-primary mt-3">Add to Cart</a>
             {% endif %}

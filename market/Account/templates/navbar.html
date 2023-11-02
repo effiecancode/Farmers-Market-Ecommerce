@@ -1,6 +1,8 @@
 <nav class="navbar navbar-expand-lg" style="background-color: rgb(222, 233, 222);">
   <div class="container-fluid text-center">
-      <a class="navbar-brand" href="{% url 'product:home' %}">Home</a>
+      <a class="navbar-brand" href="{% url 'product:home' %}">Home</a> &nbsp;&nbsp;
+      <a class="nav-link" href="/product_search/"> <i class="fa-solid fa-magnifying-glass"> &nbsp; </i>Search</a>
+
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
       </button>
@@ -12,7 +14,6 @@
           </ul>
           <div class="container float-right color-white">
             <ul class="navbar-nav ml-auto">
-              
               {% if user.is_authenticated %}
                 <!-- Visible to authenticated users -->
                 <li class="nav-item">

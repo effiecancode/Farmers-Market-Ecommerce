@@ -1,6 +1,10 @@
 {% extends 'Account/base.html' %}
 
+{% load crispy_forms_tags %}
+
 {% block content %}
+
+
 <div class="container mt-3 border" style="border-radius: 10px;">
     <div class="row">
         {% for product in products %}

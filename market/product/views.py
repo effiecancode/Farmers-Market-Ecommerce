@@ -4,8 +4,9 @@ from django.contrib import messages
 from PIL import Image
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from io import BytesIO
+from django.db.models import Q
 
-from .forms import CreateProductForm, UpdateProductForm
+from .forms import CreateProductForm, UpdateProductForm, ProductSearchForm
 from .models import Product
 
 
@@ -90,3 +91,28 @@ def delete_product(request, id):
     product.delete()
 
     return redirect('product:home')
+
+
+def product_search(request):
+    form = ProductSearchForm(request.GET)
+    products = Product.objects.all()
+
+    if form.is_valid():
+        name = form.cleaned_data.get('name')
+        location = form.cleaned_data.get('location')
+        category = form.cleaned_data.get('category')
+
+        if name:
+            products = products.filter(Q(name__icontains=name))
+
+        if location:
+            products = products.filter(Q(location__icontains=location))
+
+        if category and category != 'Select a category':
+            products = products.filter(Q(category=category))
+
+    context = {
+        'form': form,
+        'products': products
+    }
+    return render(request, 'product/product_search.html', context)
