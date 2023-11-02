@@ -33,7 +33,11 @@ INSTALLED_APPS = [
     'dashboard',
     'cart',
     'django_daraja',
+
+    'crispy_forms'
 ]
+
+TEMPLATE_PACK = "bootstrap4"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

@@ -11,7 +11,7 @@ def signup(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Account Created Successfully')
-            return redirect('Account:home')
+            return redirect('Account:signin')
         else:
             messages.error(request, 'Unsuccessful Registration')
 

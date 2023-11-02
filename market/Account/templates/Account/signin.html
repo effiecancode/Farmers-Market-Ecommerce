@@ -1,13 +1,25 @@
 {% extends 'Account/base.html' %}
+
+{% load crispy_forms_tags %}
+
 {% block content %}
+<div class="container mt-4 p-3">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card p-3">
+                <div class="card-body">
+                    <h2 class="card-title text-success text-decoration-underline">Sign In</h2>
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        {{ form|crispy }}
 
-    <form action="" method="POST">
-
-        {% csrf_token %}
-
-        {{ form }}
-
-        <button action="submit">Sign In</button>
-    </form>
-
+                        <button class="btn btn-success mt-2" type="submit" class="btn btn-primary btn-block">Sign In</button>
+                    </form>
+                </div>
+                
+                <a href="{% url 'Account:signup' %}">Don't have an account?</a>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock content %}

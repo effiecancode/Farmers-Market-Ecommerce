@@ -1,21 +1,21 @@
 {% extends 'Account/base.html' %}
 
-
 {% block content %}
-<a href="{% url 'Account:signin' %}">Sign in</a>
-
+<div class="container">
+    <div class="row">
         {% for product in products %}
-        <div>
-            <a href="{% url 'product:product_details' product.id %}">
-                <h2>{{ product.name }}</h2>
-                <div style="color: blue;" >
-                    <img  width="100" height="100" src="{{ product.image.url }}" alt="">
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <a class="text-decoration-none" href="{% url 'product:product_details' product.id %}">
+                    <img class="card-img-top" src="{{ product.image.url }}" alt="{{ product.name }}">
+                <div class="card-body text-success">
+                    <h2 class="card-title">{{ product.name }}</h2>
+                    <p class="card-text">Price: ${{ product.unit_price }}</p>
                 </div>
-                <p>{{ product.unit_price }}</p>
-                <!-- <p>{{ product.quantity }}</p> -->
-                <!-- <p>{{ product.description }}</p> -->
             </a>
+            </div>
         </div>
         {% endfor %}
-
+    </div>
+</div>
 {% endblock content %}
