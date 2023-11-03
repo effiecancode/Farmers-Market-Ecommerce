@@ -2,14 +2,15 @@
 
 {% block content %}
 <div class="container">
-    <h1>Welcome, {{ request.user.username }}!</h1>
+    <h1 class="text-capitalize mb-2 text-primary">{{ request.user.username }}</h1>
+    <h3 class="text-capitalize mb-3 text-success text-center">your items</h3>
 
     <div class="row">
         {% for product in products %}
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <a class="text-decoration-none" href="{% url 'product:product_details' product.id %}">
-                <div class="card mb-4">
-                    <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                <div class="card mb-4 text-capitalize">
+                    <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}" style="height: 200px; object-fit: cover; width: 100%;">
                     <div class="card-body">
                         <h5 class="card-title">{{ product.name }}</h5>
                         <p class="card-text">{{ product.description }}</p>

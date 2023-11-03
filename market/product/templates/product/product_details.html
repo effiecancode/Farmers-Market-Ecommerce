@@ -9,8 +9,7 @@
         <div class="col-md-6">
             <div class="text-center">
             <h2 class="text-capitalize" >{{ product.name }}</h2>
-                <img class="img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}" width="500" height="500"
-                style="border-radius: 20px;">
+                <img class="img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}" style="height: 400px; object-fit: cover; width: 100%;">
             </div>
         </div>
         <div class="col-md-6 mt-5">
@@ -18,8 +17,8 @@
             <p> <strong class="fw-bold">Each at:</strong> ${{ product.price }}</p>
             <p> <strong class="fw-bold">Minimum quantity:</strong> {{ product.quantity }}</p>
             <p> <strong class="fw-bold">Minimum order:</strong> {{ product.unit_price }}</p>
-            <p> <strong class="fw-bold">Description:</strong> {{ product.description }}</p>
-            <p> <strong class="fw-bold">Location:</strong> {{ product.location }}</p>
+            <p class="text-capitalize"> <strong class="fw-bold">Description:</strong> {{ product.description }}</p>
+            <p class="text-capitalize"> <strong class="fw-bold">Location:</strong > {{ product.location }}</p>
             {% if request.user.username != product.owner.username %}
                 <a href="{% url 'cart:addtocart' product.id %}" class="btn btn-primary mt-3">Add to Cart</a>
             {% endif %}
@@ -58,9 +57,9 @@
             <div class="col-md-2 mb-4">
                 <div class="card">
                     <a  class="text-decoration-none" href="{% url 'product:product_details' item.id %}">
-                        <img class="card-img-top" src="{{ item.image.url }}" alt="{{ item.name }}">
+                        <img class="card-img-top" src="{{ item.image.url }}" alt="{{ item.name }}" style="height: 200px; object-fit: cover; width: 100%;">
                         <div class="card-body">
-                            <h2 class="card-title fs-4 text-capitalize">{{ item.name }}</h2>
+                            <h2 class="card-title fs-6 text-capitalize text-dark">{{ item.name }}</h2>
                             <p class="card-text">Price: ${{ item.price }}</p>
                         </div>
                     </a>
