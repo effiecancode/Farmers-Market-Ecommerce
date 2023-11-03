@@ -2,8 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
-from .models import Profile
-from .forms import RegistrationForm, ProfileForm, UpdateProfileForm
+from .forms import RegistrationForm
 
 def signup(request):
     if request.method == 'POST':
