@@ -5,9 +5,9 @@ from django.contrib.auth.models import User
 class Product(models.Model):
 
     CATEGORIES = (
-        ("vegetables", "vegetables"),
-        ("fruits", "fruits"),
-        ("meat", "meat")
+        ("Vegetables", "Vegetables"),
+        ("Fruits", "Fruits"),
+        ("Meat & Poultry", "Meat & Poultry")
     )
 
     owner = models.ForeignKey(User, on_delete=models.CASCADE)

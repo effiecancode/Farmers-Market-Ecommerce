@@ -11,7 +11,7 @@ from .models import Product
 
 
 def home(request):
-    products = Product.objects.all()
+    products = Product.objects.all()[::-1]
 
     return render(request, "product/home.html", {"products": products})
 
@@ -45,11 +45,11 @@ def create_product(request):
                 )
 
             product.save()
-            messages.success(request, f"{form.cleaned_data['name']} posted!")
+            messages.success(request, f"{form.cleaned_data['name']} posted!", extra_tags="success")
             return redirect('dashboard:index')
         else:
             print(form.errors)
-            messages.error(request, 'Unsuccessful!')
+            messages.error(request, 'Unsuccessful!', extra_tags="error")
 
     form = CreateProductForm()
 
@@ -75,6 +75,7 @@ def update_product(request, id):
         if form.is_valid():
             form.save()
 
+            messages.success(request, "product updated successfully!", extra_tags="success")
             return redirect("product:product_details", id=product.id)
     else:
         form = UpdateProductForm(instance=product)
@@ -89,6 +90,7 @@ def update_product(request, id):
 def delete_product(request, id):
     product = get_object_or_404(Product, id=id, owner=request.user)
     product.delete()
+    messages.warning(request, "product deleted!", extra_tags="warning")
 
     return redirect('product:home')
 
