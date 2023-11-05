@@ -12,6 +12,7 @@
                     <img class="card-img-top" src="{{ product.image.url }}" alt="{{ product.name }}" style="height: 200px; object-fit: cover; width: 100%;">
                     <div class="card-body">
                         <h2 class="card-title text-black text-capitalize fs-6">{{ product.name }}</h2>
+                        <p class="card-text text-dark fw-2">Desc: {{ product.description|truncatewords:5 }}</p>
                         <p class="card-text text-danger fw-2">Price: ${{ product.unit_price }}</p>
                     </div>
                 </a>
