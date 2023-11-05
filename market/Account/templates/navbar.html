@@ -1,5 +1,60 @@
 {% load static %}
 
+
+<style>
+  /* Style for navbar */
+  .navbar {
+      background-color: rgb(222, 233, 222);
+      padding: 10px;
+  }
+
+  .navbar-brand img {
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+  }
+
+  .navbar-nav .nav-link {
+      color: #333;
+      font-weight: bold;
+      margin-right: 10px;
+  }
+
+  .navbar-nav .nav-link:hover {
+      color: #555;
+  }
+
+  .navbar-nav .active {
+      color: #555;
+  }
+
+  .navbar-toggler {
+      border: none;
+      outline: none;
+  }
+
+  .navbar-toggler-icon {
+      background-color: #333;
+  }
+
+  .navbar-nav.ml-auto .nav-item {
+      margin-left: 10px;
+  }
+
+  .navbar-nav.ml-auto .nav-link {
+      color: #fff;
+      background-color: #333;
+      padding: 8px 15px;
+      border-radius: 5px;
+  }
+
+  .navbar-nav.ml-auto .nav-link:hover {
+      background-color: #555;
+  }
+</style>
+
+
+
 <nav class="navbar navbar-expand-lg" style="background-color: rgb(222, 233, 222);">
   <div class="container-fluid text-center">
       <a class="navbar-brand" href="{% url 'product:home' %}">

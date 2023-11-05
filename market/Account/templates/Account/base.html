@@ -31,6 +31,28 @@
             color: orange;
         }
     </style>
+
+
+    <style>
+        /* Style for typing text */
+        #typing-text {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #f9f9f9;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: .15em solid orange;
+            font-size: 24px;
+            font-family: 'Arial', sans-serif;
+            color: rgb(77, 77, 165);
+            z-index: 9999; 
+        }
+    </style>
+
+
 </head>
 
 <body>
@@ -47,29 +69,30 @@
         </div>
     {% endif %}
 
-    {% block content %}
     <div id="typing-text" style="white-space: nowrap; overflow: hidden; border-right: .15em solid orange; font-size: 24px; font-family: 'Arial', sans-serif;">
         <!-- Empty placeholder for the typing effect -->
     </div>
+
+    {% block content %}
+   
     {% endblock %}
 
     <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
+        window.onload = function() {
             // JavaScript to reveal the typing text
-            const typingText = document.getElementById("typing-text");
-            const textToType = "Harvest to Home: Where Fresh Meets Convenience!";
-            let index = 0;
-
-            function typeText() {
-                typingText.textContent += textToType[index];
-                index++;
+            var typingText = document.getElementById("typing-text");
+            var textToType = "Harvest to Home: Where Fresh Meets Convenience...";
+            var index = 0;
+            
+            var typingInterval = setInterval(function() {
                 if (index < textToType.length) {
-                    setTimeout(typeText, 50); // Adjust the typing speed (milliseconds)
+                    typingText.textContent += textToType.charAt(index);
+                    index++;
+                } else {
+                    clearInterval(typingInterval); // Stop the interval when all characters are typed
                 }
-            }
-
-            typeText();
-        });
+            }, 50); // Adjust the typing speed (milliseconds)
+        }
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
