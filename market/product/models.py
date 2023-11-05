@@ -7,7 +7,8 @@ class Product(models.Model):
     CATEGORIES = (
         ("Vegetables", "Vegetables"),
         ("Fruits", "Fruits"),
-        ("Meat & Poultry", "Meat & Poultry")
+        ("Meat, Poultry & Dairy", "Meat, Poultry & Dairy"),
+        ("Farm Feeds", "Farm Feeds")
     )
 
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
