@@ -7,7 +7,7 @@
     <div class="row">
         {% for product in products %}
         <div class="col-md-4">
-            <div class="card mt-3">
+            <div class="card mt-3 border-0 shadow-sm">
                 <a class="text-decoration-none" href="{% url 'product:product_details' product.id %}">
                     <img class="card-img-top" src="{{ product.image.url }}" alt="{{ product.name }}" style="height: 200px; object-fit: cover; width: 100%;">
                     <div class="card-body">
