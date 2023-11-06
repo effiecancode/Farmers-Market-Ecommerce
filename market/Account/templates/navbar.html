@@ -20,10 +20,6 @@
       margin-right: 10px;
   }
 
-  .navbar-nav .nav-link:hover {
-      color: #555;
-  }
-
   .navbar-nav .active {
       color: #555;
   }
@@ -44,12 +40,14 @@
   .navbar-nav.ml-auto .nav-link {
       /*color: #fff;
       background-color: #333;*/
-      padding: 8px 15px;
-      border-radius: 5px;
+      border: solid 1px #333;
+      padding: 8px 30px;
+      border-radius: 50px;
+      display: flex;
   }
 
   .navbar-nav.ml-auto .nav-link:hover {
-      background-color: #cbc8c8;
+      background-color: #8ec9b3;
   }
 </style>
 
@@ -60,19 +58,19 @@
       <a class="navbar-brand" href="{% url 'product:home' %}">
         <img src="{% static 'Account/assets/fmlogo.ico' %}" style="border-radius: 50%; width: 100px; height: 100px" alt="">
       </a>
-      <a class="nav-link" href="/product_search/"> <i class="fa-solid fa-magnifying-glass"> &nbsp; </i>Search</a>
+      <a class="nav-link " href="/product_search/"> <i class="fa-solid fa-magnifying-glass"> &nbsp; </i>Search</a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav mr-auto">
+          <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="">Home</a>
+                <a class="nav-link active border-0" aria-current="page" href="">Home</a>
               </li>
           </ul>
 
-          <div class="container float-right color-white">
+          <div class="container color-white">
             <ul class="navbar-nav ml-auto">
                   <li class="nav-item">
                     <a class="nav-link" href="{% url 'product:create_product' %}"><strong>SELL</strong></a>
@@ -95,11 +93,11 @@
                   {% else %}
                     <!-- Visible to non-authenticated users -->
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'Account:signin' %}">Sign In</a>
+                        <a class="nav-link border-0" href="{% url 'Account:signin' %}">Sign In</a>
                       </li>
                         <li class="nav-item">
                       </li>
-                          <a class="nav-link" href="{% url 'Account:signup' %}">Sign Up</a>
+                          <a class="nav-link border-0" href="{% url 'Account:signup' %}">Sign Up</a>
                     </li>
 
                   {% endif %}
