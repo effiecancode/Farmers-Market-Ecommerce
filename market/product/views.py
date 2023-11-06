@@ -6,6 +6,8 @@ from django.core.files.uploadedfile import InMemoryUploadedFile
 from io import BytesIO
 from django.db.models import Q
 
+from django.core.paginator import Paginator
+
 from .forms import CreateProductForm, UpdateProductForm, ProductSearchForm
 from .models import Product
 
@@ -28,7 +30,7 @@ def create_product(request):
             image = form.cleaned_data.get('image')
             if image:
                 img = Image.open(image)
-                max_image_size = (500, 500) 
+                max_image_size = (500, 500)
                 img.thumbnail(max_image_size)
                 img_data = BytesIO()
                 img.save(img_data, format='JPEG', quality=80)  # You can change format and quality as needed
@@ -118,3 +120,13 @@ def product_search(request):
         'products': products
     }
     return render(request, 'product/product_search.html', context)
+
+# pagination
+def more_products(request):
+    products_list = Product.objects.all()
+    paginator = Paginator(products_list, 10)  # Show 10 products per page
+
+    page_number = request.GET.get('page')
+    products = paginator.get_page(page_number)
+
+    return render(request, 'product/more_products.html', {'products': products})
