@@ -13,7 +13,11 @@ from .models import Product
 
 
 def home(request):
-    products = Product.objects.all()[::-1]
+    products_list = Product.objects.all().order_by("id")[::-1]
+    paginator = Paginator(products_list, 12)
+
+    page_number = request.GET.get('page')
+    products = paginator.get_page(page_number)
 
     return render(request, "product/home.html", {"products": products})
 
@@ -121,12 +125,3 @@ def product_search(request):
     }
     return render(request, 'product/product_search.html', context)
 
-# pagination
-def more_products(request):
-    products_list = Product.objects.all()
-    paginator = Paginator(products_list, 10)  # Show 10 products per page
-
-    page_number = request.GET.get('page')
-    products = paginator.get_page(page_number)
-
-    return render(request, 'product/more_products.html', {'products': products})
