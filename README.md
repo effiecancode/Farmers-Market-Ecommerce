@@ -1,6 +1,6 @@
 ![Alt text](https://imgur.com/iigKY2C.jpeg)
 
-About Our App
+About The App
 
 Welcome to FARMERS MARKET - Your Gateway to Fresh and Sustainable Agriculture!
 
@@ -20,6 +20,6 @@ At Farmers Market, we're building more than just a marketplace; we're cultivatin
 
 Happy shopping and happy farming!
 
-🌱🌾🍅 Farmers Market - Team
-Effie Njoki
+🌱🌾🍅 Farmers Market - Team -
+Effie Njoki, 
 Alex njuguna
