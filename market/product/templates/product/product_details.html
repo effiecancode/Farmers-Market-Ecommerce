@@ -14,7 +14,7 @@
         </div>
         <div class="col-md-6 mt-5">
             <h5 class="text-decoration-underline text-primary mb-4">Details:</h5>
-            <p> <strong class="fw-bold">Each at:</strong> ${{ product.price }}</p>
+            <p> <strong class="fw-bold">Each at:</strong> kshs.{{ product.price }}</p>
             <p> <strong class="fw-bold">Minimum quantity:</strong> {{ product.quantity }}</p>
             <p> <strong class="fw-bold">Minimum order:</strong> {{ product.unit_price }}</p>
             <p class="text-capitalize"> <strong class="fw-bold">Description:</strong> {{ product.description }}</p>
@@ -27,7 +27,7 @@
                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Delete
                   </button>
-                  
+
             {% endif %}
         </div>
 
@@ -40,7 +40,7 @@
                 <h5 class="modal-title" id="exampleModalLabel">Delete this product</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                
+
                 <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <a href="{% url 'product:delete_product' product.id %}" class="btn btn-danger" >Delete</a>
@@ -60,7 +60,7 @@
                         <img class="card-img-top" src="{{ item.image.url }}" alt="{{ item.name }}" style="height: 200px; object-fit: cover; width: 100%;">
                         <div class="card-body">
                             <h2 class="card-title fs-6 text-capitalize text-dark">{{ item.name }}</h2>
-                            <p class="card-text">Price: ${{ item.price }}</p>
+                            <p class="card-text">Price: kshs.{{ item.price }}</p>
                         </div>
                     </a>
                 </div>
