@@ -13,7 +13,7 @@ class Product(models.Model):
 
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=30)
-    category = models.CharField(max_length=25, default="Select a category", choices=CATEGORIES)
+    category = models.CharField(max_length=25, default="Vegetables", choices=CATEGORIES)
     quantity = models.IntegerField(default=5)
     description = models.CharField(max_length=200)
     image = models.ImageField(upload_to="products")

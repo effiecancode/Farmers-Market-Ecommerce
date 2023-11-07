@@ -53,10 +53,10 @@
 
 
 
-<nav class="navbar navbar-expand-lg" style="background-color: rgb(222, 233, 222);">
+<nav class="navbar navbar-expand-lg" style="background-color: #B0C4DE;">
   <div class="container-fluid text-center">
       <a class="navbar-brand" href="{% url 'product:home' %}">
-        <img src="{% static 'Account/assets/fmlogo.ico' %}" style="border-radius: 50%; width: 100px; height: 100px" alt="">
+        <img src="{% static 'Account/assets/fmlogo.ico' %}" style="border-radius: 50%; width: 100px; height: 100px" alt="logo">
       </a>
       <a class="nav-link " href="/product_search/"> <i class="fa-solid fa-magnifying-glass"> &nbsp; </i>Search</a>
 
@@ -66,7 +66,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                <a class="nav-link active border-0" aria-current="page" href="">Home</a>
+                <a class="nav-link active border-0" aria-current="page" href="{% url 'product:home' %}">Home</a>
               </li>
           </ul>
 
