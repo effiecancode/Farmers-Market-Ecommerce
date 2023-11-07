@@ -1,2 +1,2 @@
-![Alt text](https://imgur.com/uyKncJw)
+![Alt text](https://imgur.com/uyKncJw.png)
 
