@@ -175,3 +175,23 @@ MPESA_INITIATOR_USERNAME = 'testapi'
 # Plaintext password for initiator (to be used in B2C, B2B, AccountBalance and TransactionStatusQuery Transactions)
 
 MPESA_INITIATOR_SECURITY_CREDENTIAL = 'Safaricom999!*!'
+
+
+# Emailing settings
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_FROM = "alexkienjeku@gmail.com"
+EMAIL_HOST_USER = "alexkienjeku@gmail.com"
+EMAIL_HOST_PASSWORD = "udxmnvzeulztenpr"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+PASSWORD_RESET_TIMEOUT = 14400
+
+
+
+
+
+
+
