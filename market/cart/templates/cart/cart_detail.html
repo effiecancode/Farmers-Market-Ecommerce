@@ -17,7 +17,7 @@
                         <div class="col">
                             <form method="post" action="{% url 'cart:increment_units' item.id %}">
                                 {% csrf_token %}
-                                <button type="submit" class="btn btn-primary">+</button>
+                                <button type="submit" class="btn btn-primary" >+</button>
                             </form>
                         </div>
 
@@ -29,7 +29,7 @@
                         </div>
                     </div>
 
-                    <a href="{% url 'cart:removefromcart' item.id %}" class="btn btn-danger mt-3">Remove from Cart</a>
+                    <a href="{% url 'cart:removefromcart' item.id %}" class="btn mt-3" style="background-color:#ff7c1a; color:white">Remove from Cart</a>
                 </div>
             </div>
             {% endfor %}
@@ -46,7 +46,7 @@
                             <label for="phone_number">Enter Phone Number:</label>
                             <input type="text" name="phone_number" id="phone_number" class="form-control" required>
                         </div>
-                        <button type="submit" class="btn btn-success mt-2">Pay with M-Pesa</button>
+                        <button type="submit" class="btn border-0 mt-2" style="background-color:#9cd11a; color:white">Pay with M-Pesa</button>
                     </form>
                 </div>
             </div>

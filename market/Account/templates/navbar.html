@@ -4,8 +4,8 @@
 <style>
   /* Style for navbar */
   .navbar {
-      background-color: rgb(222, 233, 222);
-      padding: 10px;
+      background-color: #9cd11a;
+      padding: 02px;
   }
 
   .navbar-brand img {
@@ -15,7 +15,7 @@
   }
 
   .navbar-nav .nav-link {
-      color: #333;
+      color: #343333;
       font-weight: bold;
       margin-right: 10px;
   }
@@ -30,7 +30,7 @@
   }
 
   .navbar-toggler-icon {
-      background-color: #333;
+      background-color: #9cd11a;
   }
 
   .navbar-nav.ml-auto .nav-item {
@@ -41,22 +41,22 @@
       /*color: #fff;
       background-color: #333;*/
       border: solid 1px #333;
-      padding: 8px 30px;
+      padding: 8px 10px;
       border-radius: 50px;
       display: flex;
   }
 
   .navbar-nav.ml-auto .nav-link:hover {
-      background-color: #8ec9b3;
+      background-color: #9cd11a;
   }
 </style>
 
 
 
-<nav class="navbar navbar-expand-lg" style="background-color: #B0C4DE;">
+<nav class="navbar navbar-expand-lg shadow-sm" style="background-color: #fafafa;">
   <div class="container-fluid text-center">
       <a class="navbar-brand" href="{% url 'product:home' %}">
-        <img src="{% static 'Account/assets/fmlogo.ico' %}" style="border-radius: 50%; width: 100px; height: 100px" alt="logo">
+        <img src="{% static 'Account/assets/fml2-02.png' %}" style="border-radius: 10%; width: 150px; height: 80px" alt="logo">
       </a>
       <a class="nav-link " href="/product_search/"> <i class="fa-solid fa-magnifying-glass"> &nbsp; </i>Search</a>
 
@@ -79,15 +79,15 @@
                   {% if user.is_authenticated %}
                     <!-- Visible to authenticated users -->
                     <li class="nav-item">
-                      <a class="nav-link" href="{% url 'cart:cart_detail'  %}">Cart</a>
+                      <a class="nav-link border-0" href="{% url 'cart:cart_detail'  %}">Cart</a>
                     </li>
 
                     <li class="nav-item">
-                      <a class="nav-link" href="{% url 'dashboard:index'  %}">Dashboard</a>
+                      <a class="nav-link border-0" href="{% url 'dashboard:index'  %}">Dashboard</a>
                     </li>
 
                     <li class="nav-item">
-                      <a class="nav-link" href="{% url 'Account:signout' %}">Sign Out</a>
+                      <a class="nav-link border-0" href="{% url 'Account:signout' %}">Sign Out</a>
                     </li>
 
                   {% else %}

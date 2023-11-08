@@ -13,14 +13,14 @@
             </div>
         </div>
         <div class="col-md-6 mt-5">
-            <h5 class="text-decoration-underline text-primary mb-4">Details:</h5>
+            <h5 class="text-decoration-underline mb-4" style="color: #04371a;">Details:</h5>
             <p> <strong class="fw-bold">Each at:</strong> kshs.{{ product.price }}</p>
             <p> <strong class="fw-bold">Minimum quantity:</strong> {{ product.quantity }}</p>
             <p> <strong class="fw-bold">Minimum order:</strong> {{ product.unit_price }}</p>
             <p class="text-capitalize"> <strong class="fw-bold">Description:</strong> {{ product.description }}</p>
             <p class="text-capitalize"> <strong class="fw-bold">Location:</strong > {{ product.location }}</p>
             {% if request.user.username != product.owner.username %}
-                <a href="{% url 'cart:addtocart' product.id %}" class="btn btn-primary mt-3">Add to Cart</a>
+                <a href="{% url 'cart:addtocart' product.id %}" class="btn btn-primary mt-3 border-0" style="background-color: #9cd11a;">Add to Cart</a>
             {% endif %}
             {% if request.user.username == product.owner.username %}
                 <a href="{% url 'product:update_product' product.id %}" class="btn btn-info">Update</a>
@@ -51,7 +51,7 @@
 
 
     </div>
-    <h3 class="mt-5 text-center display-8 fw-bold mb-3">Similar Products</h3>
+    <h3 class="mt-5 text-center display-8 fw-bold mb-3" style="color: #04371a;">Similar Products</h3>
     <div class="row">
         {% for item in items %}
             <div class="col-md-2 mb-4">
@@ -60,7 +60,7 @@
                         <img class="card-img-top" src="{{ item.image.url }}" alt="{{ item.name }}" style="height: 200px; object-fit: cover; width: 100%;">
                         <div class="card-body">
                             <h2 class="card-title fs-6 text-capitalize text-dark">{{ item.name }}</h2>
-                            <p class="card-text">Price: kshs.{{ item.price }}</p>
+                            <p class="card-text" style="color: #ff7c1a;">Price: kshs.{{ item.price }}</p>
                         </div>
                     </a>
                 </div>
