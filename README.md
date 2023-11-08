@@ -21,5 +21,5 @@ At Farmers Market, we're building more than just a marketplace; we're cultivatin
 Happy shopping and happy farming!
 
 🌱🌾🍅 Farmers Market - Team -
-Effie Njoki, 
-Alex njuguna
+Effie Njoki,
+Alex Njuguna

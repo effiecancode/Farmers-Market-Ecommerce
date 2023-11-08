@@ -11,7 +11,7 @@
                     <p class="card-text">Each at: {{ item.product.price }} </p>
                     <p class="card-text">Each unit has: {{ item.product.quantity }} {{ item.product.name }}</p>
                     <p class="card-text">Units: {{ item.units }}</p>
-                    <p class="card-text">Price (per unit): ${{ item.product.unit_price }}</p>
+                    <p class="card-text">Price (per unit): Kshs.{{ item.product.unit_price }}</p>
 
                     <div class="row" style="max-width: 120px"  >
                         <div class="col">
@@ -34,7 +34,7 @@
             </div>
             {% endfor %}
 
-            <h4>Total Price: ${{ total_price }}</h4>
+            <h4>Total Price: Kshs.{{ total_price }}</h4>
         </div>
 
         <div class="col-md-4">
