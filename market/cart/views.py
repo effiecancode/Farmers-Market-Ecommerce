@@ -87,8 +87,8 @@ def mpesa_pay(request, id):
             description = f"{len(cart_items)} items in the cart. Total price: {total_price}."
             callback_url = 'https://api.darajambili.com/express-payment'
 
-            response = cl.stk_push(phone_number, int(total_price), account_reference, description, callback_url)
+            cl.stk_push(phone_number, int(total_price), account_reference, description, callback_url)
 
-            return HttpResponse(response)
+            return redirect("product:home")
         except Cart.DoesNotExist:
             return HttpResponse("Cart not found")
